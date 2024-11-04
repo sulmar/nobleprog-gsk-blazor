@@ -8,7 +8,17 @@
 
 <h3>List</h3>
 
-<CustomerTable Customers=@customers />
+<CustomerTableTemplate Items=@customers >
+    <HeaderTemplate>
+        <th>Id</th>
+        <th>Name</th>
+    </HeaderTemplate>
+
+    <RowTemplate>
+        <td>@context.Id</td>
+        <td>@context.Name</td>
+    </RowTemplate>
+</CustomerTableTemplate>
 
 <QuickGrid Class="table table-striped" Items="@customers">
     <PropertyColumn Property="@(p=>p.Id)"   />
