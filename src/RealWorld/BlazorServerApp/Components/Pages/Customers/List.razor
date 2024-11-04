@@ -48,4 +48,16 @@
 </QuickGrid>
 
 
+@code {
 
+
+    private IQueryable<Customer> customers;
+
+    protected override void OnInitialized()
+    {
+        customers = Repository.GetAll();
+    }
+
+
+
+}
