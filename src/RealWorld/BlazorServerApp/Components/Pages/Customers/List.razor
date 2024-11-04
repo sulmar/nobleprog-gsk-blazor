@@ -14,9 +14,9 @@
         <th>Name</th>
     </HeaderTemplate>
 
-    <RowTemplate>
-        <td>@context.Id</td>
-        <td>@context.Name</td>
+    <RowTemplate Context="customer">
+        <td>@customer.Id</td>
+        <td>@customer.Name</td>
     </RowTemplate>
 </CustomerTableTemplate>
 
