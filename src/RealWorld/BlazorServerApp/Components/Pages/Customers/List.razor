@@ -7,12 +7,40 @@
 
 <h3>List</h3>
 
-<ul>
-    @foreach (var customer in customers)
-    {
-        <li>@customer.Id @customer.Name</li>
-    }    
-</ul>
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        
+        @foreach (var customer in customers)
+        {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@customer.Name</td>
+            </tr>
+            
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="1">
+                Quantity of customers: @customers.Count()
+            </td> 
+            
+            <td/> 
+
+        </tr>
+    </tfoot>
+
+    
+</table>
 
 <QuickGrid Class="table table-striped" Items="@customers">
     <PropertyColumn Property="@(p=>p.Id)"   />
