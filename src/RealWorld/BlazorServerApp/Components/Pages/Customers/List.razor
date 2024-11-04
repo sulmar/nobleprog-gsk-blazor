@@ -1,5 +1,7 @@
 ﻿@page "/customers"
 @using Domain.Models
+@using Microsoft.AspNetCore.Components.QuickGrid
+
 
 <h3>List</h3>
 
@@ -7,12 +9,17 @@
     @foreach (var customer in customers)
     {
         <li>@customer.Id @customer.Name</li>
-    }
-    
+    }    
 </ul>
 
+<QuickGrid Class="table table-striped" Items="@customers">
+    <PropertyColumn Property="@(p=>p.Id)"   />
+    <PropertyColumn Property="@(p=>p.Name)" />
+</QuickGrid>
+
+
 @code {
-    private IEnumerable<Customer> customers;
+    private IQueryable<Customer> customers;
 
     protected override void OnInitialized()
     {
@@ -23,7 +30,7 @@
             new Customer { Id = 3, Name = "Customer 3" },
             new Customer { Id = 4, Name = "Customer 4" },
             new Customer { Id = 5, Name = "Customer 5" },
-        };
+        }.AsQueryable();
     }
 
 
