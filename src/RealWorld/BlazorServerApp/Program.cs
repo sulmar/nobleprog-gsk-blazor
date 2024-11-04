@@ -1,4 +1,7 @@
 using BlazorServerApp.Components;
+using Domain.Abstractions;
+using Domain.Models;
+using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddScoped<IEnumerable<Customer>>(sp => new List<Customer>
+{
+    new Customer { Id = 1, Name = "Customer 1" },
+    new Customer { Id = 2, Name = "Customer 2" },
+    new Customer { Id = 3, Name = "Customer 3" },
+    new Customer { Id = 4, Name = "Customer 4" },
+    new Customer { Id = 5, Name = "Customer 5" },
+});
+
+builder.Services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
+ 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,6 +1,8 @@
 ﻿@page "/customers"
+@using Domain.Abstractions
 @using Domain.Models
 @using Microsoft.AspNetCore.Components.QuickGrid
+@inject ICustomerRepository Repository
 
 
 <h3>List</h3>
@@ -19,18 +21,13 @@
 
 
 @code {
+
+
     private IQueryable<Customer> customers;
 
     protected override void OnInitialized()
     {
-        customers = new List<Customer>
-        {
-            new Customer { Id = 1, Name = "Customer 1" },
-            new Customer { Id = 2, Name = "Customer 2" },
-            new Customer { Id = 3, Name = "Customer 3" },
-            new Customer { Id = 4, Name = "Customer 4" },
-            new Customer { Id = 5, Name = "Customer 5" },
-        }.AsQueryable();
+        customers = Repository.GetAll();
     }
 
 

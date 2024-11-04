@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServerApp", "BlazorServerApp\BlazorServerApp.csproj", "{1F33EE8C-0571-4810-9F42-F2DAEB7A0D05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{C087C0AB-3D6E-4E33-A4D0-4A402C8C7FDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{C087C0AB-3D6E-4E33-A4D0-4A402C8C7FDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{30647238-3F1D-4756-8F6E-97924F1D0AE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C087C0AB-3D6E-4E33-A4D0-4A402C8C7FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C087C0AB-3D6E-4E33-A4D0-4A402C8C7FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C087C0AB-3D6E-4E33-A4D0-4A402C8C7FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30647238-3F1D-4756-8F6E-97924F1D0AE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30647238-3F1D-4756-8F6E-97924F1D0AE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30647238-3F1D-4756-8F6E-97924F1D0AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30647238-3F1D-4756-8F6E-97924F1D0AE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
