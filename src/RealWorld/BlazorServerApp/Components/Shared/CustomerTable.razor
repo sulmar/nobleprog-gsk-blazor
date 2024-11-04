@@ -1,0 +1,44 @@
+﻿@using Domain.Models
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var customer in Customers)
+        {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@customer.Name</td>
+            </tr>
+
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="1">
+                Quantity of customers: @Customers.Count()
+            </td>
+
+            <td />
+
+        </tr>
+    </tfoot>
+
+
+</table>
+
+@code {
+
+    [Parameter]
+    public IQueryable<Customer> Customers { get; set; }
+
+
+
+}

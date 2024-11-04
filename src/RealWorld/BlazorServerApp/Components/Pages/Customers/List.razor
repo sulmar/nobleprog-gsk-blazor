@@ -2,45 +2,13 @@
 @using Domain.Abstractions
 @using Domain.Models
 @using Microsoft.AspNetCore.Components.QuickGrid
+@using BlazorServerApp.Components.Shared
 @inject ICustomerRepository Repository
 
 
 <h3>List</h3>
 
-<table class="table table-striped">
-
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        
-        @foreach (var customer in customers)
-        {
-            <tr>
-                <td>@customer.Id</td>
-                <td>@customer.Name</td>
-            </tr>
-            
-        }
-    </tbody>
-
-    <tfoot>
-        <tr>
-            <td colspan="1">
-                Quantity of customers: @customers.Count()
-            </td> 
-            
-            <td/> 
-
-        </tr>
-    </tfoot>
-
-    
-</table>
+<CustomerTable Customers=@customers />
 
 <QuickGrid Class="table table-striped" Items="@customers">
     <PropertyColumn Property="@(p=>p.Id)"   />
