@@ -2,9 +2,10 @@
 
 <h3>Dashboard</h3>
 
-
-<CascadingValue Value="@measure">
-    <CardItem />
+<CascadingValue Value="@customer">
+    <CascadingValue Value="@measure">
+        <CardItem />
+    </CascadingValue>
 </CascadingValue>
 
 @code {
@@ -14,6 +15,8 @@
     private string unit = "L";
 
     private Measure measure => new Measure(title, capacity, unit);
+
+    private Customer customer => new Customer { Id = 1, Name = "GSK" };
 
 
 }
