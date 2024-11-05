@@ -1,8 +1,5 @@
 ﻿@page "/customers"
-@using Domain.Abstractions
-@using Domain.Models
 @using Microsoft.AspNetCore.Components.QuickGrid
-@using BlazorServerApp.Components.Shared
 @inject ICustomerRepository Repository
 @* @rendermode InteractiveServer *@
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
