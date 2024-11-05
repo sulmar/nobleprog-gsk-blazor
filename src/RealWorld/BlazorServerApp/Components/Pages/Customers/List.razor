@@ -13,7 +13,7 @@
 
     <SearchPanel SearchEventCallback=@OnSearch />
 
-    <CustomerTableTemplate Items=@customers>
+    <TableTemplate Items=@customers>
         <HeaderTemplate>
             <th>Id</th>
             <th>Name</th>
@@ -23,7 +23,7 @@
             <td>@customer.Id</td>
             <td>@customer.Name</td>
         </RowTemplate>
-    </CustomerTableTemplate>
+    </TableTemplate>
 
     <QuickGrid Class="table table-striped" Items="@customers">
         <PropertyColumn Property="@(p=>p.Id)" />
