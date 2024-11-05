@@ -1,10 +1,14 @@
 ﻿
 
-<progress max="100" value="@Value">@Value %</progress>
+<progress max="100" value="@Value"></progress>
+<p>@Value @Unit</p>
 
 @code {
 
-    [Parameter]
+    [CascadingParameter]
     public int Value { get; set; }
+
+    [CascadingParameter]
+    public string Unit { get; set; }
 
 }

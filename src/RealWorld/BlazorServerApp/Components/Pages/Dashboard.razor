@@ -2,11 +2,18 @@
 
 <h3>Dashboard</h3>
 
-<CardItem Capacity="@capacity" />
+<CascadingValue Value="@unit">
+    <CascadingValue Value="@capacity">
+        <CardItem />
+    </CascadingValue>
+</CascadingValue>
+
 
 @code {
 
-    private int capacity  = 45;
-    
+    private int capacity = 45;
+
+    private string unit = "L";
+
 
 }
