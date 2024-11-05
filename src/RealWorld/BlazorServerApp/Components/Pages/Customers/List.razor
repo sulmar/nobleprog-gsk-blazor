@@ -13,7 +13,7 @@
 
     <div class="search-panel">
         <label for="searchText">Search: </label>
-        <input type="text" id="searchText" @bind=@searchText @onkeypress=@OnKeyPress />
+        <input type="text" id="searchText" @bind=@searchText @onkeypress=@OnKeyPress @ref=searchTextInputReference />
 
         <button type="button" class="btn btn-primary" @onclick=@Search>Search</button>
     </div>
@@ -40,13 +40,30 @@
 @code {
     private string searchText = "abc";
 
+    private ElementReference searchTextInputReference;
+
     private IQueryable<Customer> customers;
 
-    protected override async Task OnInitializedAsync()
-    {
-        await Task.Delay(3000);
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     await Task.Delay(3000);
 
-        customers = await Repository.GetAllAsync();
+    //     customers = await Repository.GetAllAsync();
+    // }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {                    
+            await Task.Delay(3000);
+
+            customers = await Repository.GetAllAsync();
+
+            StateHasChanged();
+
+            await searchTextInputReference.FocusAsync();
+            
+        }
     }
 
     // protected override async Task OnAfterRenderAsync(bool firstRender)
