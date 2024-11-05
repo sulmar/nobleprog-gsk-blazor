@@ -1,0 +1,18 @@
+﻿@page "/customers/{id:int}"
+@inject ICustomerRepository Repository
+
+<h3>View Customer @customer?.Name</h3>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private Customer customer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        customer = await Repository.GetAsync(Id);        
+    }
+
+}

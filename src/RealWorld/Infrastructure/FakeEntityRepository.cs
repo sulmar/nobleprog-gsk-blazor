@@ -15,7 +15,7 @@ public class FakeEntityRepository<T> : IEntityRepository<T>
 
     public Task<T> GetAsync(int id)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(_entities.SingleOrDefault(p=>p.Id == id));
     }
 
     public Task<IQueryable<T>> GetAllAsync()

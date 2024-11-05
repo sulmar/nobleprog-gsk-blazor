@@ -14,11 +14,13 @@
         <HeaderTemplate>
             <th>Id</th>
             <th>Name</th>
+            <th></th>
         </HeaderTemplate>
 
         <RowTemplate Context="customer">
             <td>@customer.Id</td>
             <td>@customer.Name</td>
+            <td><a class="btn btn-primary" href="/customers/@customer.Id">View</a></td>
         </RowTemplate>
     </TableTemplate>
 
