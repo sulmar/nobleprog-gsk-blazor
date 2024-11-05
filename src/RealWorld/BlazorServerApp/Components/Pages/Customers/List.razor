@@ -9,15 +9,8 @@
 
 <h3>List</h3>
 
-@if (customers is null)
-{
-    <div class="loader">
-        <p>Loading customers...</p>
-        <div class="spinner-border"></div>
-    </div>
-}
-else
-{
+<Loader Message="Loading customers..." Items="@customers">
+
     <CustomerTableTemplate Items=@customers>
         <HeaderTemplate>
             <th>Id</th>
@@ -34,13 +27,13 @@ else
         <PropertyColumn Property="@(p=>p.Id)" />
         <PropertyColumn Property="@(p=>p.Name)" />
     </QuickGrid>
-}
 
+</Loader>
 
 @code {
 
     private IQueryable<Customer> customers;
-     
+
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(3000);

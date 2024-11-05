@@ -1,0 +1,26 @@
+﻿@typeparam T
+
+@if (Items is null)
+{
+    <div class="loader">
+        <p>@Message</p>
+        <div class="spinner-border"></div>
+    </div>
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+
+    [Parameter]
+    public IQueryable<T> Items { get; set; }
+
+    [Parameter]
+    public string Message { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}
