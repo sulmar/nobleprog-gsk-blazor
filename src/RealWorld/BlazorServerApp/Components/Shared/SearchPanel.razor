@@ -1,0 +1,44 @@
+﻿<div class="search-panel">
+    <label for="searchText">Search: </label>
+    <input type="text" id="searchText" @bind=@searchText @bind:event="oninput" @bind:after="Search" @ref=searchTextInputReference />
+
+    <button type="button" class="btn btn-primary" @onclick=@Search>Search</button>
+
+    <p>@searchText.Length</p>
+</div>
+
+
+
+@code {
+
+    private ElementReference searchTextInputReference;
+
+    private string searchText = string.Empty;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await searchTextInputReference.FocusAsync();
+
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string> SearchEventCallback { get; set; }
+
+    private async Task Search()
+    {
+        await SearchEventCallback.InvokeAsync(searchText);
+    }
+
+    private async Task OnKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await Search();
+        }
+    }
+
+   
+}

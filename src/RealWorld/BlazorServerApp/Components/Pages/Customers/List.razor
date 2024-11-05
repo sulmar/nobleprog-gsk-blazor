@@ -11,14 +11,7 @@
 
 <Loader Message="Loading customers..." Items="@customers">
 
-    <div class="search-panel">
-        <label for="searchText">Search: </label>
-        <input type="text" id="searchText" @bind=@searchText @bind:event="oninput" @bind:after="Search" @ref=searchTextInputReference />
-
-        <button type="button" class="btn btn-primary" @onclick=@Search>Search</button>
-
-        <p>@searchText.Length</p>
-    </div>
+    <SearchPanel SearchEventCallback=@OnSearch />
 
     <CustomerTableTemplate Items=@customers>
         <HeaderTemplate>
@@ -40,9 +33,9 @@
 </Loader>
 
 @code {
-    private string searchText = string.Empty;
+  
 
-    private ElementReference searchTextInputReference;
+   
 
     private IQueryable<Customer> customers;
 
@@ -62,8 +55,7 @@
             customers = await Repository.GetAllAsync();
 
             StateHasChanged();
-
-            await searchTextInputReference.FocusAsync();
+            
             
         }
     }
@@ -80,17 +72,12 @@
     //     }
     // }
 
-    private async Task Search()
+   
+    private async Task OnSearch(string searchText)
     {
         customers = await Repository.GetByNameAsync(searchText);
     }
 
-    private async Task OnKeyUp(KeyboardEventArgs e)
-    {
-        if (e.Key == "Enter")
-        {
-            await Search();
-        }
-    }
+   
 
 }
