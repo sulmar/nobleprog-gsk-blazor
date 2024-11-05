@@ -2,9 +2,11 @@
 
 <h3>Dashboard</h3>
 
-<CascadingValue Value="@customer">
-    <CascadingValue Value="@measure">
-        <CardItem />
+<CascadingValue Value="@logged">
+    <CascadingValue Value="@customer">
+        <CascadingValue Value="@measure">
+            <CardItem />
+        </CascadingValue>
     </CascadingValue>
 </CascadingValue>
 
@@ -17,6 +19,7 @@
     private Measure measure => new Measure(title, capacity, unit);
 
     private Customer customer => new Customer { Id = 1, Name = "GSK" };
+    private User logged => new User { Id = 1, FirstName = "John", LastName = "Smith", Email = "john@domain.com" };
 
 
 }
