@@ -14,4 +14,9 @@ public class DbCustomerRepository : ICustomerRepository
     {
         throw new NotImplementedException();
     }
+
+    public Task<IQueryable<Customer>> GetByNameAsync(string name)
+    {
+        throw new NotImplementedException();
+    }
 }

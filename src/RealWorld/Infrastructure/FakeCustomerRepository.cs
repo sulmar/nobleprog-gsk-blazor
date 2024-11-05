@@ -8,4 +8,9 @@ public class FakeCustomerRepository : FakeEntityRepository<Customer>, ICustomerR
     public FakeCustomerRepository(IEnumerable<Customer> entities) : base(entities)
     {
     }
+
+    public Task<IQueryable<Customer>> GetByNameAsync(string name)
+    {
+        return Task.FromResult(_entities.Where(e => e.Name.Contains(name)).AsQueryable());
+    }
 }

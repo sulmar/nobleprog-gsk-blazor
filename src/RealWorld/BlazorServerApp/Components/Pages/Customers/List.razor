@@ -61,9 +61,9 @@
     //     }
     // }
 
-    private void Search()
+    private async Task Search()
     {
-        
+        customers = await Repository.GetByNameAsync(searchText);
     }
 
 }
