@@ -1,3 +1,4 @@
+using BlazorServerApp;
 using BlazorServerApp.Components;
 using Domain.Abstractions;
 using Domain.Models;
@@ -27,6 +28,8 @@ builder.Services.AddScoped<IEnumerable<User>>(sp => new List<User>
 
 builder.Services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
 builder.Services.AddScoped<IUserRepository, FakeUserResopitory>();
+
+builder.Services.AddSingleton<ApplicationState>();
  
 var app = builder.Build();
 
