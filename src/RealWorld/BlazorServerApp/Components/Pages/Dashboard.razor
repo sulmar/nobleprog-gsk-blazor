@@ -3,22 +3,17 @@
 <h3>Dashboard</h3>
 
 
-<CascadingValue Value="@unit" Name="a">
-    <CascadingValue Value="@capacity">
-        <CascadingValue Value="@title" Name="b">
-            <CardItem />
-        </CascadingValue>
-    </CascadingValue>
+<CascadingValue Value="@measure">
+    <CardItem />
 </CascadingValue>
-
 
 @code {
 
+    private string title = "Pojemność";
     private int capacity = 45;
-
     private string unit = "L";
 
-    private string title = "Pojemność";
+    private Measure measure => new Measure(title, capacity, unit);
 
 
 }
