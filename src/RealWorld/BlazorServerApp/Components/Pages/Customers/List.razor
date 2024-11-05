@@ -4,38 +4,60 @@
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using BlazorServerApp.Components.Shared
 @inject ICustomerRepository Repository
-
+@* @rendermode InteractiveServer *@
+@rendermode @(new InteractiveServerRenderMode(prerender:false))
 
 <h3>List</h3>
 
-<CustomerTableTemplate Items=@customers >
-    <HeaderTemplate>
-        <th>Id</th>
-        <th>Name</th>
-    </HeaderTemplate>
+@if (customers is null)
+{
+    <div class="loader">
+        <p>Loading customers...</p>
+        <div class="spinner-border"></div>
+    </div>
+}
+else
+{
+    <CustomerTableTemplate Items=@customers>
+        <HeaderTemplate>
+            <th>Id</th>
+            <th>Name</th>
+        </HeaderTemplate>
 
-    <RowTemplate Context="customer">
-        <td>@customer.Id</td>
-        <td>@customer.Name</td>
-    </RowTemplate>
-</CustomerTableTemplate>
+        <RowTemplate Context="customer">
+            <td>@customer.Id</td>
+            <td>@customer.Name</td>
+        </RowTemplate>
+    </CustomerTableTemplate>
 
-<QuickGrid Class="table table-striped" Items="@customers">
-    <PropertyColumn Property="@(p=>p.Id)"   />
-    <PropertyColumn Property="@(p=>p.Name)" />
-</QuickGrid>
+    <QuickGrid Class="table table-striped" Items="@customers">
+        <PropertyColumn Property="@(p=>p.Id)" />
+        <PropertyColumn Property="@(p=>p.Name)" />
+    </QuickGrid>
+}
 
 
 @code {
 
-
     private IQueryable<Customer> customers;
-
-    protected override void OnInitialized()
+     
+    protected override async Task OnInitializedAsync()
     {
-        customers = Repository.GetAll();
+        await Task.Delay(3000);
+
+        customers = await Repository.GetAllAsync();
     }
 
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         await Task.Delay(3000);
 
+    //         customers = await Repository.GetAllAsync();
+
+    //         StateHasChanged();
+    //     }
+    // }
 
 }

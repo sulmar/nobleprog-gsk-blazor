@@ -5,12 +5,12 @@ namespace Infrastructure;
 
 public class DbCustomerRepository : ICustomerRepository
 {
-    public Customer Get(int id)
+    public Task<Customer> GetAsync(int id)
     {
         throw new NotImplementedException();
     }
 
-    public IQueryable<Customer> GetAll()
+    public Task<IQueryable<Customer>> GetAllAsync()
     {
         throw new NotImplementedException();
     }

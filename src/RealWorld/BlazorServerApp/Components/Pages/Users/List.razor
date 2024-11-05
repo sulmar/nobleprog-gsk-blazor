@@ -28,8 +28,10 @@
 @code {
     private IQueryable<User> users;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        users = Repository.GetAll();
+        await Task.Delay(3000);
+
+        users = await Repository.GetAllAsync();
     }
 }

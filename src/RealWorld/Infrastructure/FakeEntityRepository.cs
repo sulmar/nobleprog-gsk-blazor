@@ -13,13 +13,13 @@ public class FakeEntityRepository<T> : IEntityRepository<T>
         _entities = entities;
     }
 
-    public T Get(int id)
+    public Task<T> GetAsync(int id)
     {
         throw new NotImplementedException();
     }
 
-    public IQueryable<T> GetAll()
+    public Task<IQueryable<T>> GetAllAsync()
     {
-        return _entities.AsQueryable();
+        return Task.FromResult(_entities.AsQueryable());
     }
 }
