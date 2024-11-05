@@ -18,7 +18,15 @@ builder.Services.AddScoped<IEnumerable<Customer>>(sp => new List<Customer>
     new Customer { Id = 5, Name = "Customer 5" },
 });
 
+builder.Services.AddScoped<IEnumerable<User>>(sp => new List<User>
+{
+    new User { Id = 1, FirstName = "a", LastName = "b", Email = "a.b@domain.com" },
+    new User { Id = 2, FirstName = "b", LastName = "d", Email = "b.d@domain.com" },
+    new User { Id = 3, FirstName = "e", LastName = "f", Email = "e.f@domain.com" },
+});
+
 builder.Services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
+builder.Services.AddScoped<IUserRepository, FakeUserResopitory>();
  
 var app = builder.Build();
 

@@ -3,22 +3,9 @@ using Domain.Models;
 
 namespace Infrastructure;
 
-public class FakeCustomerRepository : ICustomerRepository
+public class FakeCustomerRepository : FakeEntityRepository<Customer>, ICustomerRepository
 {
-    private readonly IEnumerable<Customer> _customers;
-
-    public FakeCustomerRepository(IEnumerable<Customer> customers)
+    public FakeCustomerRepository(IEnumerable<Customer> entities) : base(entities)
     {
-        _customers = customers;
-    }
-
-    public Customer Get(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IQueryable<Customer> GetAll()
-    {
-        return _customers.AsQueryable();
     }
 }
