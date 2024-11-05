@@ -13,7 +13,7 @@
 
     <div class="search-panel">
         <label for="searchText">Search: </label>
-        <input type="text" id="searchText" @bind=@searchText />
+        <input type="text" id="searchText" @bind=@searchText @onkeypress=@OnKeyPress />
 
         <button type="button" class="btn btn-primary" @onclick=@Search>Search</button>
     </div>
@@ -64,6 +64,14 @@
     private async Task Search()
     {
         customers = await Repository.GetByNameAsync(searchText);
+    }
+
+    private async Task OnKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await Search();
+        }
     }
 
 }
