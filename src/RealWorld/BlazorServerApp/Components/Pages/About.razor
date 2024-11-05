@@ -4,9 +4,14 @@
 
 <p>@message</p>
 
+<p>Hello @CurrentUser.FirstName @CurrentUser.LastName</p>
+
 
 @code {
 
     private string message = "Hello World!";
+
+    [CascadingParameter]
+    public User CurrentUser { get; set; } 
 
 }
