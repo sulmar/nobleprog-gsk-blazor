@@ -13,9 +13,11 @@
 
     <div class="search-panel">
         <label for="searchText">Search: </label>
-        <input type="text" id="searchText" @bind=@searchText @onkeypress=@OnKeyPress @ref=searchTextInputReference />
+        <input type="text" id="searchText" @bind=@searchText @bind:event="oninput" @bind:after="Search" @ref=searchTextInputReference />
 
         <button type="button" class="btn btn-primary" @onclick=@Search>Search</button>
+
+        <p>@searchText.Length</p>
     </div>
 
     <CustomerTableTemplate Items=@customers>
@@ -38,7 +40,7 @@
 </Loader>
 
 @code {
-    private string searchText = "abc";
+    private string searchText = string.Empty;
 
     private ElementReference searchTextInputReference;
 
@@ -83,7 +85,7 @@
         customers = await Repository.GetByNameAsync(searchText);
     }
 
-    private async Task OnKeyPress(KeyboardEventArgs e)
+    private async Task OnKeyUp(KeyboardEventArgs e)
     {
         if (e.Key == "Enter")
         {
