@@ -11,6 +11,13 @@
 
 <Loader Message="Loading customers..." Items="@customers">
 
+    <div class="search-panel">
+        <label for="searchText">Search: </label>
+        <input type="text" id="searchText" @bind-value=@searchText />
+
+        <button type="button" class="btn btn-primary" @onclick=@Search>Search</button>
+    </div>
+
     <CustomerTableTemplate Items=@customers>
         <HeaderTemplate>
             <th>Id</th>
@@ -31,6 +38,7 @@
 </Loader>
 
 @code {
+    private string searchText = "abc";
 
     private IQueryable<Customer> customers;
 
@@ -52,5 +60,10 @@
     //         StateHasChanged();
     //     }
     // }
+
+    private void Search()
+    {
+        
+    }
 
 }
