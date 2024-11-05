@@ -3,6 +3,7 @@
 @inject ICustomerRepository Repository
 @* @rendermode InteractiveServer *@
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
+@inject NavigationManager NavigationManager
 
 <h3>List</h3>
 
@@ -20,7 +21,10 @@
         <RowTemplate Context="customer">
             <td>@customer.Id</td>
             <td>@customer.Name</td>
-            <td><a class="btn btn-primary" href="/customers/@customer.Id">View</a></td>
+            <td>
+                <a class="btn btn-primary" href="/customers/@customer.Id">View</a>
+                <button class="btn btn-danger" @onclick="@(()=>Delete(@customer.Id))">Delete</button>
+            </td>
         </RowTemplate>
     </TableTemplate>
 
@@ -32,9 +36,11 @@
 </Loader>
 
 @code {
-  
 
-   
+    private void Delete(int id)
+    {
+        NavigationManager.NavigateTo("/");
+    }
 
     private IQueryable<Customer> customers;
 
@@ -48,14 +54,14 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
-        {                    
+        {
             await Task.Delay(3000);
 
             customers = await Repository.GetAllAsync();
 
             StateHasChanged();
-            
-            
+
+
         }
     }
 
@@ -71,12 +77,12 @@
     //     }
     // }
 
-   
+
     private async Task OnSearch(string searchText)
     {
         customers = await Repository.GetByNameAsync(searchText);
     }
 
-   
+
 
 }
