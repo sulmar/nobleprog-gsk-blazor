@@ -2,9 +2,12 @@
 
 <h3>Dashboard</h3>
 
-<CascadingValue Value="@unit">
+
+<CascadingValue Value="@unit" Name="a">
     <CascadingValue Value="@capacity">
-        <CardItem />
+        <CascadingValue Value="@title" Name="b">
+            <CardItem />
+        </CascadingValue>
     </CascadingValue>
 </CascadingValue>
 
@@ -14,6 +17,8 @@
     private int capacity = 45;
 
     private string unit = "L";
+
+    private string title = "Pojemność";
 
 
 }

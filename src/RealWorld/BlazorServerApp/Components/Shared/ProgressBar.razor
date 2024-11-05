@@ -1,6 +1,8 @@
 ﻿
+<h5>@Title</h5>
 
 <progress max="100" value="@Value"></progress>
+
 <p>@Value @Unit</p>
 
 @code {
@@ -8,7 +10,10 @@
     [CascadingParameter]
     public int Value { get; set; }
 
-    [CascadingParameter]
+    [CascadingParameter(Name = "a")]
     public string Unit { get; set; }
+
+    [CascadingParameter(Name = "b")]
+    public string Title { get; set; }
 
 }
