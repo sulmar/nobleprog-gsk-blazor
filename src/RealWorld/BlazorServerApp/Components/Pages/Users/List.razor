@@ -3,25 +3,36 @@
 @using Domain.Abstractions
 @using Domain.Models
 @inject IUserRepository Repository
+@rendermode @(new InteractiveServerRenderMode(prerender:false))
 
 <h3>List</h3>
 
-<TableTemplate Items=@users>
-    <HeaderTemplate>
-        <th>Id</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Email</th>
-    </HeaderTemplate>
+@if (users is null)
+{
+    <div class="loader">
+        <p>Loading users...</p>
+        <div class="spinner-border"></div>
+    </div>
+}
+else
+{
+    <TableTemplate Items=@users>
+        <HeaderTemplate>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+        </HeaderTemplate>
 
-    <RowTemplate Context="user">
-        <td>@user.Id</td>
-        <td>@user.FirstName</td>
-        <td>@user.LastName</td>
-        <td>@user.Email</td>
-    </RowTemplate>
+        <RowTemplate Context="user">
+            <td>@user.Id</td>
+            <td>@user.FirstName</td>
+            <td>@user.LastName</td>
+            <td>@user.Email</td>
+        </RowTemplate>
 
-</TableTemplate>
+    </TableTemplate>
+}
 
 
 
