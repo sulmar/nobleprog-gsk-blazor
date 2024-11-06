@@ -6,15 +6,47 @@
 
 <EditForm Model=@customer OnValidSubmit=@OnSubmitAsync FormName="customerForm">
 
+    <DataAnnotationsValidator />
+
+    <ValidationSummary />
+
     <div class="form-group">
-        <label>Name
+        <label>
+            Name
             <InputText @bind-Value=@customer.Name class="form-control" />
+            <ValidationMessage For="()=>customer.Name" />
         </label>
     </div>
 
     <div class="form-group">
-        <label>Description
+        <label>
+            Description
             <InputTextArea @bind-Value=@customer.Description class="form-control" />
+            <ValidationMessage For="()=>customer.Description" />
+        </label>
+    </div>
+
+     <div class="form-group">
+        <label>
+            Account
+            <InputText @bind-Value=@customer.Account class="form-control" />
+            <ValidationMessage For="()=>customer.Account" />
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            Password
+            <InputText type="password" placeholder="Password" @bind-Value=@customer.Password class="form-control" />
+            <ValidationMessage For="()=>customer.Password" />
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            Confirm Password
+            <InputText type="password" placeholder="Confirm Password"  @bind-Value=@customer.ConfirmPassword class="form-control" />
+            <ValidationMessage For="()=>customer.ConfirmPassword" />
         </label>
     </div>
 
@@ -42,7 +74,7 @@
         Console.WriteLine($"Create a customer {customer.Id} {customer.Name}");
 
         await Repository.Add(customer);
-        
+
         NavigationManager.NavigateTo("/customers");
     }
 
