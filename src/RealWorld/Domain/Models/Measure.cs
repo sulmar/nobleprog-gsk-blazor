@@ -12,4 +12,9 @@ public class Measure
         Value = value;
         Unit = unit;
     }
+
+    public override string ToString()
+    {
+        return $"{Title} : {Value} [{Unit}]";
+    }
 }

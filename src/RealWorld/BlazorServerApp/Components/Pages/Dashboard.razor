@@ -1,9 +1,47 @@
 ﻿@page "/dashboard"
+@using Microsoft.AspNetCore.SignalR.Client
+@inject HubConnection connection
+@rendermode InteractiveServer
+@implements IAsyncDisposable
 
 <h3>Dashboard</h3>
 
+@* <CardItem /> *@
 
-<CardItem />
+<ul>
+    @foreach (var measure in measures)
+    {
+        <li>@measure.Title @measure.Value @measure.Unit</li>
+    }
+</ul>
+
+@code {
+    private List<Measure> measures = new List<Measure>();
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            connection.On<Measure>("ReceivedMeasure", async measure =>
+            {
+                measures.Add(measure);
+
+                await InvokeAsync(() => StateHasChanged());
+
+            });
+
+            await connection.StartAsync();
+        }
+    }
+
+
+    public async ValueTask DisposeAsync()
+    {
+        await connection.StopAsync();
+    }
+
+}
 
 
 

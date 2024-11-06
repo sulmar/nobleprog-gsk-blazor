@@ -1,8 +1,11 @@
 using BlazorServerApp;
+using BlazorServerApp.BackgroundServices;
 using BlazorServerApp.Components;
+using BlazorServerApp.Hubs;
 using Domain.Abstractions;
 using Domain.Models;
 using Infrastructure;
+using Microsoft.AspNetCore.SignalR.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +33,16 @@ builder.Services.AddSingleton<ICustomerRepository, FakeCustomerRepository>();
 builder.Services.AddScoped<IUserRepository, FakeUserResopitory>();
 
 builder.Services.AddSingleton<ApplicationState>();
+
+builder.Services.AddSignalR();
+
+// TODO: Pobierz adres bazowy ze zmiennej 
+builder.Services.AddSingleton<HubConnection>(sp => new HubConnectionBuilder()
+        .WithUrl("https://localhost:7118/signalr/measures")
+        .Build());
  
+builder.Services.AddHostedService<MeasureBackgroundService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -48,5 +60,7 @@ app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+
+app.MapHub<MeasuresHub>("/signalr/measures");
 
 app.Run();
