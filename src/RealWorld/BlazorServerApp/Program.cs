@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddScoped<IEnumerable<Customer>>(sp => new List<Customer>
+builder.Services.AddSingleton<IEnumerable<Customer>>(sp => new List<Customer>
 {
     new Customer { Id = 1, Name = "Customer 1" },
     new Customer { Id = 2, Name = "Customer 2" },
@@ -26,7 +26,7 @@ builder.Services.AddScoped<IEnumerable<User>>(sp => new List<User>
     new User { Id = 3, FirstName = "e", LastName = "f", Email = "e.f@domain.com" },
 });
 
-builder.Services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
+builder.Services.AddSingleton<ICustomerRepository, FakeCustomerRepository>();
 builder.Services.AddScoped<IUserRepository, FakeUserResopitory>();
 
 builder.Services.AddSingleton<ApplicationState>();

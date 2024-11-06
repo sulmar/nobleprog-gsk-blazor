@@ -11,6 +11,6 @@ public class FakeUserResopitory : FakeEntityRepository<User>, IUserRepository
 
     public User GetByEmail(string email)
     {
-        return _entities.SingleOrDefault(e => e.Email == email);
+        return _entities.Values.SingleOrDefault(e => e.Email == email);
     }
 }

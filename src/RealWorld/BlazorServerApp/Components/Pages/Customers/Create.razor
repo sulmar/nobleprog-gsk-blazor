@@ -1,0 +1,49 @@
+﻿@page "/customers/create"
+@inject ICustomerRepository Repository
+@inject NavigationManager NavigationManager
+
+<h3>Create</h3>
+
+<EditForm Model=@customer OnValidSubmit=@OnSubmitAsync FormName="customerForm">
+
+    <div class="form-group">
+        <label>Name
+            <InputText @bind-Value=@customer.Name class="form-control" />
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Description
+            <InputTextArea @bind-Value=@customer.Description class="form-control" />
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</EditForm>
+
+@code {
+
+    [SupplyParameterFromForm]
+    Customer customer { get; set; }
+
+    protected override void OnInitialized()
+    {
+        // if (customer is null)
+        // {
+        //     customer = new Customer();
+        // }
+
+        customer ??= new Customer();
+    }
+
+    private async Task OnSubmitAsync()
+    {
+        Console.WriteLine($"Create a customer {customer.Id} {customer.Name}");
+
+        await Repository.Add(customer);
+        
+        NavigationManager.NavigateTo("/customers");
+    }
+
+}

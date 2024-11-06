@@ -19,4 +19,9 @@ public class DbCustomerRepository : ICustomerRepository
     {
         throw new NotImplementedException();
     }
+
+    public Task Add(Customer entity)
+    {
+        throw new NotImplementedException();
+    }
 }

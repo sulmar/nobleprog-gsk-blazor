@@ -11,6 +11,6 @@ public class FakeCustomerRepository : FakeEntityRepository<Customer>, ICustomerR
 
     public Task<IQueryable<Customer>> GetByNameAsync(string name)
     {
-        return Task.FromResult(_entities.Where(e => e.Name.Contains(name)).AsQueryable());
+        return Task.FromResult(_entities.Values.Where(e => e.Name.Contains(name)).AsQueryable());
     }
 }

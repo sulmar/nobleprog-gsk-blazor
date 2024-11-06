@@ -7,4 +7,5 @@ public interface IEntityRepository<T>
 {
     Task<IQueryable<T>> GetAllAsync();
     Task<T> GetAsync(int id);
+    Task Add(T entity);
 }
