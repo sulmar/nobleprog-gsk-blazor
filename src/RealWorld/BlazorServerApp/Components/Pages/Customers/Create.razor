@@ -1,12 +1,13 @@
 ﻿@page "/customers/create"
 @inject ICustomerRepository Repository
 @inject NavigationManager NavigationManager
+@using Blazored.FluentValidation
 
 <h3>Create</h3>
 
 <EditForm Model=@customer OnValidSubmit=@OnSubmitAsync FormName="customerForm">
 
-    <DataAnnotationsValidator />
+    <FluentValidationValidator />
 
     <ValidationSummary />
 
