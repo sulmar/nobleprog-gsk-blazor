@@ -39,6 +39,7 @@ builder.Services.AddSignalR();
 // TODO: Pobierz adres bazowy ze zmiennej 
 builder.Services.AddSingleton<HubConnection>(sp => new HubConnectionBuilder()
         .WithUrl("https://localhost:7118/signalr/measures")
+        .WithAutomaticReconnect()
         .Build());
  
 builder.Services.AddHostedService<MeasureBackgroundService>();
