@@ -1,6 +1,7 @@
 using BlazorServerApp;
 using BlazorServerApp.BackgroundServices;
 using BlazorServerApp.Components;
+using BlazorServerApp.Components.Pages;
 using BlazorServerApp.Hubs;
 using Domain.Abstractions;
 using Domain.Models;
@@ -43,6 +44,8 @@ builder.Services.AddSingleton<HubConnection>(sp => new HubConnectionBuilder()
         .Build());
  
 builder.Services.AddHostedService<MeasureBackgroundService>();
+
+builder.Services.AddScoped<LocalStorage>();
 
 var app = builder.Build();
 

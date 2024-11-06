@@ -1,0 +1,53 @@
+﻿@page "/JSInterop"
+@rendermode InteractiveServer
+@inject IJSRuntime JS
+@inject LocalStorage LocalStorage
+
+<h3>JSInterop</h3>
+
+<button class="btn btn-primary" @onclick=@LogToConsole>Log To Console</button>
+
+<button class="btn btn-secondary" @onclick=@ShowConfirm>Show confirm</button>
+
+@confirmResult
+
+
+<button class="btn btn-secondary" @onclick=@SetItemLocalStorage>Set Item Local Storage</button>
+<button class="btn btn-secondary" @onclick=@GetItemLocalStorage>Get Item Local Storage</button>
+
+@course
+
+
+@code {
+    private string course;
+
+    private async Task SetItemLocalStorage()
+    {
+        await LocalStorage.SetItem("course", "Blazor 8");
+    }
+
+    private async Task GetItemLocalStorage()
+    {
+        course = await LocalStorage.GetItem("course");
+    }
+
+    private async Task LogToConsole()
+    {
+        await JS.InvokeVoidAsync("console.log", "Hello World!");
+    }
+
+    private bool confirmResult;
+
+    private async Task ShowConfirm()
+    {
+        confirmResult = await Confirm("Are you sure?");
+    }
+
+    private async Task<bool> Confirm(string message)
+    {
+        return await JS.InvokeAsync<bool>("confirm", message);
+    }
+
+    
+
+}
