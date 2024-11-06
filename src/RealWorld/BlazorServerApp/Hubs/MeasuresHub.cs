@@ -8,6 +8,8 @@ public class MeasuresHub : Hub
     {
         Console.WriteLine($"Connected: {this.Context.ConnectionId}");
 
+        this.Groups.AddToGroupAsync(Context.ConnectionId, "Room1");
+
         return base.OnConnectedAsync();
     }
 }

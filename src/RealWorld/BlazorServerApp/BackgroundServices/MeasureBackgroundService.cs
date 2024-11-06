@@ -23,12 +23,14 @@ public class MeasureBackgroundService : BackgroundService
             var duration = _random.Next(1000, 3000);
 
             await Task.Delay(duration);
-
+                
             Measure measure = new Measure ("Temperature Room 1", _random.Next(20, 100), "C");
 
             Console.WriteLine($"Send {measure}");
 
-            await hubContext.Clients.All.SendAsync("ReceivedMeasure", measure);
+            // await hubContext.Clients.All.SendAsync("ReceivedMeasure", measure);
+
+            await hubContext.Clients.Group("Room1").SendAsync("ReceivedMeasure", measure);
         }
     }
 }
