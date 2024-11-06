@@ -6,6 +6,7 @@ using BlazorServerApp.Hubs;
 using Domain.Abstractions;
 using Domain.Models;
 using Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.SignalR.Client;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +48,9 @@ builder.Services.AddHostedService<MeasureBackgroundService>();
 
 builder.Services.AddScoped<LocalStorage>();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -61,6 +65,8 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
+
+app.UseAuthentication();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
